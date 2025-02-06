@@ -1,0 +1,225 @@
+$activeLinkColor:#ff5722;
+$defaultLinkColor:#444;
+
+$dialogbgcolor: rgba(0, 0, 0, 0.5);
+$modalbgcolor: #fff; 
+$modalpadding: 20px;
+$modalradius: 8px;
+$modalshadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+$modaltransition: all 0.3s ease-in-out;
+$input-bg-color: #fff;
+$input-border-color: #ccc;
+$input-focus-border-color: #007bff; 
+$input-padding: 10px;
+$input-radius: 5px;
+$input-font-size: 1rem;
+$input-transition: all 0.3s ease;
+
+
+
+
+@mixin breakpoint($size) {
+    @if $size == small {
+      @media (max-width: 480px) {
+        @content;
+      }
+    }
+    @else if $size == medium {
+      @media (max-width: 1024px) {
+        @content;
+      }
+    }
+    @else if $size == large {
+      @media (max-width: 1440px) {
+        @content;
+      }
+    }
+
+  }
+  
+
+
+
+
+.mainContainer{
+     padding: 15px;
+     h2{
+      margin: 0;
+      font-size: 12px;
+     }
+ul{
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+    display: flex;
+    gap:20px;
+    
+    .userInfo{
+      flex: 1;
+      @include breakpoint("medium"){
+        width: 100%;
+      }
+        nav{
+          display: flex;
+          justify-content: center;
+            ul{
+                display: flex;
+                gap:10px;
+                li{
+                    
+                    a{
+                        color:$defaultLinkColor;
+                        &:hover{
+                            color:$activeLinkColor;
+                        }
+                        &.active-tab{
+                            color:$activeLinkColor;
+                        }
+                    }
+                   
+                }
+            }
+           
+        }
+    }
+    .watchList{
+      &.watchlistRouter{
+        display: block;
+        @include breakpoint("medium"){
+          display:none;
+        }
+    }
+    
+      
+
+     width: 30%;
+    
+    }
+    .dashboard{
+      .watchlistRouter{
+        display: none;
+        @include breakpoint("medium"){
+          display:block;
+        }
+    }
+    
+      
+
+    }
+}
+.buyButton{
+  background-color:#4184f3;
+  color:white;
+}
+.sellButton{
+  background-color:$activeLinkColor;
+  color: white;
+}
+.watchListContainer{
+  height: 95vh;
+  overflow-y: scroll;
+  &_securities{
+     display: flex;
+     padding: 5px;
+     align-items: center;
+     justify-content: space-between;
+     font-size: 12px;
+     gap:5px;
+     .up{
+      color:#4caf50
+    }
+    .down{
+      color:#df514c
+    }
+     &--name{
+      width: 40%;
+      font-size: 12px;
+      white-space: nowrap;      
+      overflow: hidden;         
+      text-overflow: ellipsis; 
+     }
+     &--changePercent{
+      display: inline-block;
+      width: 20%;
+      text-align: right;
+     }
+     &--price{
+      width: 30%;
+      font-weight: 500;
+      text-align: right;
+     }
+     &--symbol{
+      width: 10%;
+     }
+    
+  }
+}
+.dialog {
+    background-color: $modalbgcolor;
+    border-radius: $modalradius;
+    box-shadow: $modalshadow;
+    padding: $modalpadding;
+   
+    width: 500px;
+  
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.9); 
+    transition: transform 0.3s ease-in-out;
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        padding-bottom:  20px;
+    }
+    &_inputContainer{
+        padding-bottom:  20px;
+        display: flex;
+        .form-group{
+            width: 50%;
+            display: flex;
+            gap:10px;
+            label{
+                display: block  ;
+            }
+        }
+        input{
+         
+        }
+        &--price{
+            margin-left: auto;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    
+  }
+
+
+  input{
+    background-color: $input-bg-color;
+    border: 1px solid $input-border-color;
+    border-radius: $input-radius;
+    padding: $input-padding;
+    font-size: $input-font-size;
+    color: #333;
+    width: 100%;
+  
+    transition: $input-transition;
+  
+    /* Remove the default outline on focus */
+    outline: none;
+  
+    /* Placeholder styles */
+    &::placeholder {
+      color: #aaa;
+      font-style: italic;
+    }
+    &:focus{
+      border: 1px solid  $activeLinkColor;
+    }
+  }
+  
